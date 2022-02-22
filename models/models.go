@@ -20,6 +20,11 @@ type Device struct {
 	UpdateAt time.Time `gorm:"type:datetime;default:0;not null"`
 }
 
+type User struct {
+	Id     string `gorm:"type:varchar(20);not null"`
+	Passwd string `gorm:"type:varchar(20);not null"`
+}
+
 type JsonDevice struct {
 	Addr     int    `json:"addr"`
 	Current  int    `json:"current"`
@@ -37,6 +42,7 @@ func init() {
 	}
 	// Migrate the schema
 	err = db.AutoMigrate(&Device{})
+	err = db.AutoMigrate(&User{})
 	if err != nil {
 		logging.Fatal("Sqlite AutoMigrate Error ", err.Error())
 	}
@@ -98,4 +104,26 @@ func GetAllDevices() []JsonDevice {
 		jsonDevices = append(jsonDevices, toJsonDevice(devices[i]))
 	}
 	return jsonDevices
+}
+
+func AddUser(user User) {
+	db.Create(&user)
+}
+
+func Verify(user User) bool {
+	var retUser User
+	db.Find(&User{Id: user.Id}).First(&retUser)
+
+	if retUser.Passwd == user.Passwd {
+		return true
+	}
+	return false
+}
+
+func UpdateUser(user User) {
+	db.Where("id=?", user.Id).Updates(&user)
+}
+
+func DeleteUser(user User) {
+	db.Where("id=?", user.Id).Delete(&user)
 }

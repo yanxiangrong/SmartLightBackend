@@ -1,6 +1,7 @@
 package router
 
 import (
+	"SmartLightBackend/middleware"
 	"SmartLightBackend/router/api"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -11,8 +12,12 @@ func InitRouter() *gin.Engine {
 	r := gin.Default()
 	r.Use(cors.Default()) // 使用跨域中间件
 
+	r.POST("/login", api.Login)
+
 	rApi := r.Group("/api")
 	{
+		rApi.Use(middleware.Authenticate())
+
 		rApi.GET("/ping", func(context *gin.Context) {
 			context.String(http.StatusOK, "pong")
 		})
