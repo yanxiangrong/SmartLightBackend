@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smart-light-backend
+    hostname: smart-light-backend
+    ports:
+      - "9527:9527"
+      - "9528:9528"
+    restart: always

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a4f1facd-3de4-4583-9884-452a7cd25fa1" name="香橙派">
+        <fileTransfer accessType="SFTP" host="hnitoj.cn" port="6001" sshConfigId="0c6c3273-13cb-410e-9b88-20c8dfc559aa" sshConfig="yan@hnitoj.cn:6001 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="c1fe9616-6d02-4d6d-a90f-6078f3cd95a8" name="虚拟机">
+        <fileTransfer accessType="SFTP" host="192.168.1.213" port="22" sshConfigId="6e08f834-2761-48ff-8cbf-6cb30a0d8abf" sshConfig="user@192.168.1.213:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
